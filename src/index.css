@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Color & Styling Variables */
+:root {
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: all 0.15s ease;
+  
+  /* Shared values */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+/* Light Theme: High contrast White/Black with Dark Forest Green accents */
+:root,
+html[data-theme='light'] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-tertiary: #f0f0f0;
+  
+  --text-primary: #111111;
+  --text-secondary: #444444;
+  --text-muted: #777777;
+  
+  --accent: #14532d;        /* Deep forest green */
+  --accent-light: #166534;  /* Medium forest green */
+  --accent-glow: rgba(20, 83, 45, 0.05);
+  --accent-border: rgba(20, 83, 45, 0.15);
+  
+  --success: #15803d;
+  --border-color: #e5e5e5;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  
+  --scrollbar-thumb: #d4d4d4;
+  --scrollbar-track: #fafafa;
+  --glow-color: rgba(20, 83, 45, 0.04);
+}
+
+/* Dark Theme: Deep Slate/Charcoal with Crisp White text & Emerald Green accents */
+html[data-theme='dark'] {
+  --bg-primary: #0a0a0a;     /* Pure near black */
+  --bg-secondary: #121212;   /* Deep charcoal */
+  --bg-tertiary: #1c1c1c;    /* Neutral dark gray */
+  
+  --text-primary: #f5f5f5;   /* Pure off-white */
+  --text-secondary: #a3a3a3; /* Neutral gray */
+  --text-muted: #525252;     /* Muted dark gray */
+  
+  --accent: #4ade80;        /* Bright emerald */
+  --accent-light: #22c55e;  /* Vibrant green */
+  --accent-glow: rgba(74, 222, 128, 0.08);
+  --accent-border: rgba(74, 222, 128, 0.2);
+  
+  --success: #4ade80;
+  --border-color: #262626;
+  --card-bg: rgba(18, 18, 18, 0.95);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --nav-bg: rgba(10, 10, 10, 0.9);
+  
+  --scrollbar-thumb: #2d2d2d;
+  --scrollbar-track: #0a0a0a;
+  --glow-color: rgba(74, 222, 128, 0.08);
+}
+
+/* Samurai Theme: Sumi Ink Black with Washi Paper text, Gold & Crimson Lacquer Accents */
+html[data-theme='samurai'] {
+  --bg-primary: #0f0a0c;     /* Sumi ink black with a hint of warm plum */
+  --bg-secondary: #1a1215;   /* Deep lacquered wood */
+  --bg-tertiary: #261b1f;    /* Warm dark charcoal */
+  
+  --text-primary: #f3ebd9;   /* Traditional Washi paper off-white */
+  --text-secondary: #cecaa9; /* Soft golden bamboo / straw */
+  --text-muted: #796c70;     /* Incense ash */
+  
+  --accent: #e11d48;        /* Bold Urushi lacquer crimson */
+  --accent-light: #f43f5e;  /* Vibrant cherry blossom red */
+  --accent-glow: rgba(225, 29, 72, 0.08);
+  --accent-border: rgba(225, 29, 72, 0.25);
+  
+  --success: #10b981;
+  --border-color: #38252c;   /* Dark lacquer rim */
+  --card-bg: rgba(26, 18, 21, 0.96);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(225, 29, 72, 0.05);
+  --nav-bg: rgba(15, 10, 12, 0.93);
+  
+  --scrollbar-thumb: #3e2831;
+  --scrollbar-track: #0f0a0c;
+  --glow-color: rgba(225, 29, 72, 0.12);
+}
+
+/* Custom details for Samurai Theme */
+html[data-theme='samurai'] .glass-panel {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(225, 29, 72, 0.15);
+  background-image: linear-gradient(135deg, rgba(26, 18, 21, 0.96) 0%, rgba(38, 27, 31, 0.96) 100%);
+}
+
+html[data-theme='samurai'] .glass-panel:hover {
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(225, 29, 72, 0.15), 0 0 0 1px var(--accent);
+}
+
+html[data-theme='samurai'] .logo-accent {
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(225, 29, 72, 0.4);
+}
+
+html[data-theme='samurai'] h1, 
+html[data-theme='samurai'] h2, 
+html[data-theme='samurai'] h3 {
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme='samurai'] ::selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* Beautiful Japanese Cherry Blossom (Sakura) Petals Animation for Samurai theme */
+.sakura-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  background: linear-gradient(135deg, #f43f5e 0%, #fda4af 100%);
+  border-radius: 96% 4% 96% 4% / 96% 4% 96% 4%; /* Cherry blossom petal shape */
+  width: 12px;
+  height: 12px;
+  opacity: 0.8;
+  animation: sakura-fall 10s linear infinite;
+  box-shadow: 0 1px 4px rgba(225, 29, 72, 0.2);
+}
+
+.petal:nth-child(1) { left: 10%; width: 14px; height: 14px; animation-duration: 8s; animation-delay: 0s; }
+.petal:nth-child(2) { left: 25%; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 2s; }
+.petal:nth-child(3) { left: 40%; width: 12px; height: 12px; animation-duration: 10s; animation-delay: 4s; }
+.petal:nth-child(4) { left: 55%; width: 15px; height: 15px; animation-duration: 9s; animation-delay: 1s; }
+.petal:nth-child(5) { left: 70%; width: 11px; height: 11px; animation-duration: 14s; animation-delay: 3s; }
+.petal:nth-child(6) { left: 85%; width: 13px; height: 13px; animation-duration: 11s; animation-delay: 5s; }
+.petal:nth-child(7) { left: 95%; width: 12px; height: 12px; animation-duration: 8s; animation-delay: 2s; }
+.petal:nth-child(8) { left: 15%; width: 11px; height: 11px; animation-duration: 13s; animation-delay: 6s; }
+.petal:nth-child(9) { left: 50%; width: 14px; height: 14px; animation-duration: 10s; animation-delay: 7s; }
+.petal:nth-child(10) { left: 80%; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 0.5s; }
+
+@keyframes sakura-fall {
+  0% {
+    top: -5%;
+    transform: rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 105%;
+    transform: rotate(450deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* Reset & Global Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-size: 15px; /* Smaller, minimal base font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px; /* Slimmer scrollbar */
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent-glow);
+  color: var(--accent);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem); /* More minimal and smaller */
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem); /* Smaller titles */
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+p {
+  font-size: 0.95rem; /* Smaller minimal body text */
+  color: var(--text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1100px; /* Slimmer max-width for compact feel */
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+.section {
+  padding: 6rem 0 3rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4.5rem 0 2rem;
+  }
+}
+
+/* UI Panel Components */
+.glass-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius-md);
+  transition: var(--transition-smooth);
+}
+
+.glass-panel:hover {
+  border-color: var(--accent);
+}
+
+/* Premium Minimal Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.2rem; /* Slimmer, smaller padding */
+  font-family: var(--font-heading);
+  font-size: 0.88rem; /* Smaller font size */
+  font-weight: 500;
+  border-radius: var(--border-radius-sm); /* Minimal squared-off border radius */
+  cursor: pointer;
+  transition: var(--transition-fast);
+  gap: 0.4rem;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent);
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); } /* Tighter, more subtle float */
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px); /* Minimal distance */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Grid & Dashboard layout for Stats */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+/* Custom pills/tags */
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.pill {
+  padding: 0.35rem 0.75rem; /* Smaller padding */
+  font-size: 0.82rem; /* Compact size */
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pill:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+/* Footer Section */
+footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  margin-top: auto;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-social-link {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: var(--transition-fast);
+}
+
+.footer-social-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}

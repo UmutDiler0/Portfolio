@@ -1,0 +1,136 @@
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 6rem 0 3rem;
+  min-height: 50vh; /* Reduced height for centered minimal feel */
+}
+
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 4.5rem 0 2rem;
+  }
+}
+
+.hero-content {
+  max-width: 760px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-greeting {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-name {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 2.8rem); /* Much smaller, minimal title */
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem); /* Compact and clean */
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 0.98rem; /* Smaller body font */
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Avatar/Image Column */
+.hero-visual {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 170px; /* Greatly reduced profile picture size */
+  height: 170px;
+  border-radius: 50%;
+  padding: 4px;
+  background: var(--border-color);
+  transition: var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+  .avatar-wrapper {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+.avatar-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--accent);
+  filter: blur(20px);
+  opacity: 0.12; /* Subtle minimal aura */
+  z-index: -1;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--bg-secondary);
+  transition: var(--transition-smooth);
+}
+
+.avatar-wrapper:hover {
+  transform: translateY(-2px);
+  background-color: var(--accent);
+}
