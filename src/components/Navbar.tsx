@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useData } from '../context/DataContext';
+import logoUd from '../assets/logo-ud.png';
 import './Navbar.css';
 
 export type TabType = 'about' | 'experiences' | 'projects' | 'connections' | 'admin';
@@ -74,10 +75,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
     <nav className="navbar">
       <div className="container nav-container">
         {/* Brand Logo */}
-        <div className="logo" onClick={handleLogoClick}>
-          <span className="logo-accent">&lt;</span>
-          Umut
-          <span className="logo-accent">.dev /&gt;</span>
+        <div className="logo logo-container" onClick={handleLogoClick}>
+          <img src={logoUd} alt="Umut Diler Logo" className="logo-img" />
         </div>
 
         {/* Desktop Navigation Menu */}

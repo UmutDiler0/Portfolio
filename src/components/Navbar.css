@@ -20,20 +20,50 @@
   position: relative;
 }
 
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
+.logo-container {
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.6rem;
   cursor: pointer;
+  user-select: none;
 }
 
-.logo-accent {
-  color: var(--accent);
-  font-family: var(--font-body);
+.logo-img {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+}
+
+.logo-container:hover .logo-img {
+  transform: scale(1.15) rotate(-6deg);
+}
+
+/* Light Theme Logo Styling */
+html[data-theme='light'] .logo-img {
+  filter: brightness(0.1); /* Deep dark charcoal/black */
+}
+html[data-theme='light'] .logo-container:hover .logo-img {
+  /* Green tint on hover for light theme */
+  filter: invert(20%) sepia(35%) saturate(836%) hue-rotate(84deg) brightness(91%) contrast(92%);
+}
+
+/* Dark Theme Logo Styling */
+html[data-theme='dark'] .logo-img {
+  filter: invert(1) brightness(0.95); /* Crisp off-white */
+}
+html[data-theme='dark'] .logo-container:hover .logo-img {
+  /* Emerald tint on hover for dark theme */
+  filter: invert(79%) sepia(50%) saturate(464%) hue-rotate(87deg) brightness(101%) contrast(97%);
+}
+
+/* Samurai Theme Logo Styling */
+html[data-theme='samurai'] .logo-img {
+  filter: invert(0.95) sepia(0.1) saturate(1.5) hue-rotate(350deg); /* Washi paper warm white */
+}
+html[data-theme='samurai'] .logo-container:hover .logo-img {
+  /* Lacquer red/crimson tint on hover for samurai theme */
+  filter: invert(18%) sepia(93%) saturate(4590%) hue-rotate(338deg) brightness(94%) contrast(94%);
 }
 
 /* Nav Menu Desktop */
