@@ -29,7 +29,10 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
       aria-hidden="true"
     >
       <div className="splash-glow" />
-      <img src={logoUd} alt="" className="splash-logo" />
+      <div
+        className="splash-logo"
+        style={{ maskImage: `url(${logoUd})`, WebkitMaskImage: `url(${logoUd})` }}
+      />
       <div className="splash-loader">
         <span></span>
         <span></span>

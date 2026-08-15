@@ -28,10 +28,18 @@
 .splash-logo {
   position: relative;
   width: clamp(90px, 16vw, 150px);
-  height: auto;
+  height: clamp(74px, 13.2vw, 124px);
   opacity: 0;
+  background-color: var(--text-primary);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
   filter: drop-shadow(0 4px 18px var(--accent-glow));
   animation: splash-logo-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: background-color 0.3s ease;
 }
 
 .splash-loader {
