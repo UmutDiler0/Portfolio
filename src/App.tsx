@@ -4,6 +4,7 @@ import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { DataProvider } from './context/DataContext';
 import Navbar from './components/Navbar';
 import type { TabType } from './components/Navbar';
+import SplashScreen from './components/SplashScreen';
 import Hero from './components/Hero';
 import AboutMe from './pages/AboutMe';
 import AdminPanel from './pages/AdminPanel';
@@ -17,8 +18,16 @@ import './App.css';
 const MainAppContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('about');
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+  const [showSplash, setShowSplash] = useState(true);
   const { t, language } = useLanguage();
   const { theme } = useTheme();
+
+  useEffect(() => {
+    document.body.style.overflow = showSplash ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showSplash]);
 
   useEffect(() => {
     const handleLocationCheck = () => {
@@ -105,6 +114,7 @@ const MainAppContent: React.FC = () => {
 
   return (
     <>
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       {theme === 'samurai' && (
         <div className="sakura-container">
           <div className="petal"></div>
